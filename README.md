@@ -4,14 +4,15 @@ wikipedia articles near me
 
 ### Usage
 
-SET REACT_APP_MAPBOX_TOKEN = _<your\_token>_  // or store in .env file
+SET REACT*APP_MAPBOX_TOKEN = *<your_token>\_ // or store in .env file
 
 npm run start
 
 ### TODO
 
-- [ ] location API
-- [ ] wikipedia geo api
+- [ x ] location API
+- [x] wikipedia geo api
 - [ ] build the actual content
+- [ ] deploy to gh pages
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

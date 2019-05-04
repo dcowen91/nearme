@@ -1,11 +1,27 @@
 import React from 'react';
 import './App.css';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import axios from 'axios';
+
+interface IWikipediaResponse {
+	lat: number;
+	lon: number;
+	pageid: number;
+	title: number;
+}
+
+interface IWikiItem {
+	latitude: number;
+	longitude: number;
+	pageId: number;
+	title: string;
+}
 
 interface IAppState {
 	latitude: number;
 	longitude: number;
 	showErrorDialog: boolean;
+	items: IWikiItem[];
 }
 
 const Map = ReactMapboxGl({
@@ -19,7 +35,8 @@ class App extends React.Component<{}, IAppState> {
 		this.state = {
 			latitude: 47.6072062,
 			longitude: -122.3350407,
-			showErrorDialog: false
+			showErrorDialog: false,
+			items: []
 		};
 	}
 
@@ -55,7 +72,10 @@ class App extends React.Component<{}, IAppState> {
 							center={[this.state.longitude, this.state.latitude]}
 						>
 							<Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-								<Feature coordinates={[this.state.longitude, this.state.latitude]} />
+								{this.state.items.map(item => (
+									<Feature coordinates={[item.longitude, item.latitude]} />
+								))}
+								{/* <Feature coordinates={[this.state.longitude, this.state.latitude]} /> */}
 							</Layer>
 						</Map>
 					</div>
@@ -65,8 +85,22 @@ class App extends React.Component<{}, IAppState> {
 	}
 
 	getArticles(): void {
-		// TODO server/ request handling
-		// 'https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=10000&gscoord=37.786971|-122.399677&format=json',
+		const url = `https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=10000&gscoord=${
+			this.state.latitude
+		}|${this.state.longitude}&format=json&origin=*`;
+
+		axios.get(url).then(res => {
+			const wikiItems: IWikiItem[] = res.data.query.geosearch.map((responseItem: IWikipediaResponse) => {
+				return {
+					latitude: responseItem.lat,
+					longitude: responseItem.lon,
+					pageId: responseItem.pageid,
+					title: responseItem.title
+				};
+			});
+
+			this.setState({ items: wikiItems });
+		});
 	}
 }
 

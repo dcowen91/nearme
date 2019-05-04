@@ -4,12 +4,12 @@ wikipedia articles near me
 
 ### Usage
 
-SET REACT_APP_MAPBOX_TOKEN = <token>
+SET REACT_APP_MAPBOX_TOKEN = _<your\_token>_  // or store in .env file
+
 npm run start
 
 ### TODO
 
-- [ ] fix the map layout on widescreen browser
 - [ ] location API
 - [ ] wikipedia geo api
 - [ ] build the actual content

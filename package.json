@@ -14,7 +14,7 @@
     "mapbox-gl": "^0.54.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-mapbox-gl": "^4.2.3",
+    "react-mapbox-gl": "^4.3.0",
     "react-scripts": "3.0.0",
     "typescript": "^3.4.5"
   },

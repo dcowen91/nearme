@@ -10,7 +10,7 @@ npm run start
 
 ### TODO
 
-- [ x ] location API
+- [x] location API
 - [x] wikipedia geo api
 - [ ] build the actual content
 - [ ] deploy to gh pages

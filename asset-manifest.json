@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/dcowen91/nearme/static/css/main.d1425237.chunk.css",
-    "main.js": "/dcowen91/nearme/static/js/main.07a63d84.chunk.js",
-    "main.js.map": "/dcowen91/nearme/static/js/main.07a63d84.chunk.js.map",
-    "runtime~main.js": "/dcowen91/nearme/static/js/runtime~main.9941a25f.js",
-    "runtime~main.js.map": "/dcowen91/nearme/static/js/runtime~main.9941a25f.js.map",
-    "static/css/2.2614ebd1.chunk.css": "/dcowen91/nearme/static/css/2.2614ebd1.chunk.css",
-    "static/js/2.bb870d95.chunk.js": "/dcowen91/nearme/static/js/2.bb870d95.chunk.js",
-    "static/js/2.bb870d95.chunk.js.map": "/dcowen91/nearme/static/js/2.bb870d95.chunk.js.map",
-    "index.html": "/dcowen91/nearme/index.html",
-    "precache-manifest.6fecbccf219e87a20cc4677d67a5df6a.js": "/dcowen91/nearme/precache-manifest.6fecbccf219e87a20cc4677d67a5df6a.js",
-    "service-worker.js": "/dcowen91/nearme/service-worker.js",
-    "static/css/2.2614ebd1.chunk.css.map": "/dcowen91/nearme/static/css/2.2614ebd1.chunk.css.map",
-    "static/css/main.d1425237.chunk.css.map": "/dcowen91/nearme/static/css/main.d1425237.chunk.css.map"
+    "main.css": "/nearme/static/css/main.d1425237.chunk.css",
+    "main.js": "/nearme/static/js/main.07a63d84.chunk.js",
+    "main.js.map": "/nearme/static/js/main.07a63d84.chunk.js.map",
+    "runtime~main.js": "/nearme/static/js/runtime~main.83555f8e.js",
+    "runtime~main.js.map": "/nearme/static/js/runtime~main.83555f8e.js.map",
+    "static/css/2.2614ebd1.chunk.css": "/nearme/static/css/2.2614ebd1.chunk.css",
+    "static/js/2.bb870d95.chunk.js": "/nearme/static/js/2.bb870d95.chunk.js",
+    "static/js/2.bb870d95.chunk.js.map": "/nearme/static/js/2.bb870d95.chunk.js.map",
+    "index.html": "/nearme/index.html",
+    "precache-manifest.53e9ceb53ba3141690498a4f359c6c3c.js": "/nearme/precache-manifest.53e9ceb53ba3141690498a4f359c6c3c.js",
+    "service-worker.js": "/nearme/service-worker.js",
+    "static/css/2.2614ebd1.chunk.css.map": "/nearme/static/css/2.2614ebd1.chunk.css.map",
+    "static/css/main.d1425237.chunk.css.map": "/nearme/static/css/main.d1425237.chunk.css.map"
   }
 }

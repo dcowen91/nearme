@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import ReactMapboxGl, { Layer, Feature, Popup } from "react-mapbox-gl";
 import axios from "axios";
+import { debounce } from "lodash-es";
 
 interface IWikipediaResponse {
   lat: number;
@@ -30,6 +31,8 @@ const Map = ReactMapboxGl({
 });
 
 class App extends React.Component<{}, IAppState> {
+  debouncedGetArticles = debounce(this.getArticles, 500);
+
   constructor(props: {}) {
     super(props);
 
@@ -64,7 +67,7 @@ class App extends React.Component<{}, IAppState> {
       prevState.latitude !== this.state.latitude ||
       prevState.longitude !== this.state.longitude
     ) {
-      this.getArticles();
+      this.debouncedGetArticles();
       // TODO debounce/ add min change threshold
     }
   }
@@ -128,7 +131,7 @@ class App extends React.Component<{}, IAppState> {
             "bottom-right": [-12, -38]
           }}
         >
-          <h1>{item.title}</h1>
+          <h4>{item.title}</h4>
         </Popup>
       );
     }

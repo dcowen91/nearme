@@ -4,6 +4,7 @@ import ReactMapboxGl, { Layer, Feature, Popup } from 'react-mapbox-gl';
 import axios from 'axios';
 import { debounce } from 'lodash-es';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import produce from 'immer';
 
 interface IWikipediaResponse {
 	lat: number;
@@ -17,6 +18,7 @@ interface IWikiItem {
 	longitude: number;
 	pageId: number;
 	title: string;
+	description?: string;
 }
 
 interface IAppState {
@@ -112,7 +114,7 @@ class App extends React.Component<{}, IAppState> {
 									<Feature
 										key={item.pageId}
 										coordinates={[item.longitude, item.latitude]}
-										onClick={() => this.setState({ selectedItemIndex: index, menuOpen: true })}
+										onClick={() => this.setState({ selectedItemIndex: index, menuOpen: true }, this.getArticleDetail)}
 									/>
 								))}
 							</Layer>
@@ -153,14 +155,34 @@ class App extends React.Component<{}, IAppState> {
 	}
 
 	renderItemDetails(): JSX.Element {
-		return <div>'TODO FETCH'</div>;
+		// TODO add margin
+		const { description } = this.state.items[this.state.selectedItemIndex];
+		if (description) {
+			if (description.includes('↵')) {
+				return (
+					<div>
+						{description.split('↵').map(subDescription => (
+							<p>{subDescription}</p>
+						))}
+					</div>
+				);
+			} else {
+				return <p>{description}</p>;
+			}
+		}
+
+		return <p>{'No summary found'}</p>;
 	}
 
 	renderItemNames(): JSX.Element {
 		return (
 			<ul>
 				{this.state.items.map((item, index) => (
-					<li key={item.pageId} className="listItem" onClick={() => this.setState({ selectedItemIndex: index })}>
+					<li
+						key={item.pageId}
+						className="listItem"
+						onClick={() => this.setState({ selectedItemIndex: index }, this.getArticleDetail)}
+					>
 						{item.title}
 					</li>
 				))}
@@ -184,6 +206,23 @@ class App extends React.Component<{}, IAppState> {
 			);
 		}
 		return undefined;
+	}
+
+	private getArticleDetail(): void {
+		if (this.state.selectedItemIndex >= 0) {
+			const item = this.state.items[this.state.selectedItemIndex];
+			if (!item.description) {
+				const pageId = item.pageId;
+				const url = `https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro&explaintext&redirects=1&pageids=${pageId}`;
+				axios.get(url).then(res => {
+					this.setState(
+						produce((draft: IAppState) => {
+							draft.items[draft.selectedItemIndex].description = res.data.query.pages[pageId].extract;
+						})
+					);
+				});
+			}
+		}
 	}
 
 	getArticles(): void {

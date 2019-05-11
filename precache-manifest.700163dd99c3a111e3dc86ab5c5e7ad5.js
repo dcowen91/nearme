@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5fd44d1e8719d379b39d6ec1aec67dec",
+    "revision": "0f5a7345f6ff4f6eab42839fc638fe63",
     "url": "/nearme/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/nearme/static/css/2.2614ebd1.chunk.css"
   },
   {
-    "revision": "b186f38fc3682e49c110",
-    "url": "/nearme/static/css/main.4b00a866.chunk.css"
+    "revision": "1f0ebc26da5f5fd46fed",
+    "url": "/nearme/static/css/main.61cd6d7a.chunk.css"
   },
   {
     "revision": "eb7be123c2fc49570647",
     "url": "/nearme/static/js/2.1a347926.chunk.js"
   },
   {
-    "revision": "b186f38fc3682e49c110",
+    "revision": "1f0ebc26da5f5fd46fed",
     "url": "/nearme/static/js/main.a860020e.chunk.js"
   },
   {

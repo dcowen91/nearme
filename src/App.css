@@ -58,6 +58,11 @@
 	width: 100vw;
 	max-width: 450px;
 	height: 100%;
+	overflow-y: scroll;
+}
+
+.description {
+	padding: 10px;
 }
 
 .listItem {

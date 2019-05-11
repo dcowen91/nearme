@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ReactMapboxGl, { Layer, Feature, Popup } from 'react-mapbox-gl';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import axios from 'axios';
 import { debounce } from 'lodash-es';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -100,7 +100,6 @@ class App extends React.Component<{}, IAppState> {
 								}
 							}}
 						>
-							{/* {this.renderPopUp()} */}
 							<Layer
 								type="symbol"
 								id="marker"
@@ -149,7 +148,7 @@ class App extends React.Component<{}, IAppState> {
 		return (
 			<>
 				<h5>{itemSelected ? this.state.items[this.state.selectedItemIndex].title : 'Locations'}</h5>
-				{itemSelected ? this.renderItemDetails() : this.renderItemNames()}
+				<div className="description">{itemSelected ? this.renderItemDetails() : this.renderItemNames()}</div>
 			</>
 		);
 	}
@@ -158,17 +157,13 @@ class App extends React.Component<{}, IAppState> {
 		// TODO add margin
 		const { description } = this.state.items[this.state.selectedItemIndex];
 		if (description) {
-			if (description.includes('↵')) {
-				return (
-					<div>
-						{description.split('↵').map(subDescription => (
-							<p>{subDescription}</p>
-						))}
-					</div>
-				);
-			} else {
-				return <p>{description}</p>;
-			}
+			return (
+				<>
+					{description.split('\n').map(subDescription => (
+						<p>{subDescription}</p>
+					))}
+				</>
+			);
 		}
 
 		return <p>{'No summary found'}</p>;
@@ -188,24 +183,6 @@ class App extends React.Component<{}, IAppState> {
 				))}
 			</ul>
 		);
-	}
-
-	renderPopUp(): JSX.Element | undefined {
-		if (this.state.selectedItemIndex >= 0) {
-			const item = this.state.items[this.state.selectedItemIndex];
-			return (
-				<Popup
-					coordinates={[item.longitude, item.latitude]}
-					offset={{
-						'bottom-left': [12, -38],
-						'bottom-right': [-12, -38]
-					}}
-				>
-					<h4>{item.title}</h4>
-				</Popup>
-			);
-		}
-		return undefined;
 	}
 
 	private getArticleDetail(): void {

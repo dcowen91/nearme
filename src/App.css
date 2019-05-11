@@ -41,10 +41,23 @@
 	position: absolute;
 	top: 5px;
 	right: 5px;
-	color: white;
-	z-index: 1;
+	z-index: 2;
 	font-size: 26px;
 	cursor: pointer;
+}
+
+.menuOpen {
+	color: white;
+}
+
+.sidebar {
+	position: absolute;
+	right: 0;
+	background-color: white;
+	z-index: 1;
+	width: 100vw;
+	max-width: 450px;
+	height: 100%;
 }
 
 @keyframes App-logo-spin {

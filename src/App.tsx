@@ -3,7 +3,7 @@ import './App.css';
 import ReactMapboxGl, { Layer, Feature, Popup } from 'react-mapbox-gl';
 import axios from 'axios';
 import { debounce } from 'lodash-es';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 interface IWikipediaResponse {
 	lat: number;
@@ -68,7 +68,7 @@ class App extends React.Component<{}, IAppState> {
 	componentDidUpdate(_prevProps: {}, prevState: IAppState): void {
 		if (prevState.latitude !== this.state.latitude || prevState.longitude !== this.state.longitude) {
 			this.debouncedGetArticles();
-			// TODO debounce/ add min change threshold
+			// TODO add min change threshold/ make debounce logic smarter
 		}
 	}
 
@@ -78,9 +78,8 @@ class App extends React.Component<{}, IAppState> {
 				<header className="App-header">{'NEARME'}</header>
 				<div className="mapContainer">
 					<div className="mapInner">
-						<a className="menu" onClick={() => this.setState({ menuOpen: true })}>
-							<FaBars />
-						</a>
+						{this.renderIcon()}
+						{this.renderOverlay()}
 						<Map
 							style="mapbox://styles/mapbox/dark-v10"
 							containerStyle={{
@@ -99,21 +98,21 @@ class App extends React.Component<{}, IAppState> {
 								}
 							}}
 						>
-							{this.renderPopUp()}
+							{/* {this.renderPopUp()} */}
 							<Layer
 								type="symbol"
 								id="marker"
 								layout={{
 									'icon-image': 'marker-15',
-									'icon-size': 2
-									//   "icon-color": "#f2e353"
+									'icon-size': 1.5
+									// 'icon-color': '#F2e353'
 								}}
 							>
 								{this.state.items.map((item, index) => (
 									<Feature
 										key={item.pageId}
 										coordinates={[item.longitude, item.latitude]}
-										onClick={() => this.setState({ selectedItemIndex: index })}
+										onClick={() => this.setState({ selectedItemIndex: index, menuOpen: true })}
 									/>
 								))}
 							</Layer>
@@ -121,6 +120,51 @@ class App extends React.Component<{}, IAppState> {
 					</div>
 				</div>
 			</div>
+		);
+	}
+
+	renderIcon(): JSX.Element {
+		// TODO css animations
+		return (
+			<a
+				className="menu"
+				onClick={() => this.setState(currentState => ({ menuOpen: !currentState.menuOpen, selectedItemIndex: -1 }))}
+			>
+				{this.state.menuOpen ? <FaTimes /> : <FaBars className="menuOpen" />}
+			</a>
+		);
+	}
+
+	renderOverlay(): JSX.Element | undefined {
+		// TODO css animations
+		if (this.state.menuOpen) {
+			return <div className="sidebar">{this.renderMenuContent()}</div>;
+		}
+	}
+
+	renderMenuContent(): JSX.Element {
+		const itemSelected = this.state.selectedItemIndex >= 0;
+		return (
+			<>
+				<h5>{itemSelected ? this.state.items[this.state.selectedItemIndex].title : 'Locations'}</h5>
+				{itemSelected ? this.renderItemDetails() : this.renderItemNames()}
+			</>
+		);
+	}
+
+	renderItemDetails(): JSX.Element {
+		return <div>'TODO FETCH'</div>;
+	}
+
+	renderItemNames(): JSX.Element {
+		return (
+			<ul>
+				{this.state.items.map((item, index) => (
+					<li key={item.pageId} onClick={() => this.setState({ selectedItemIndex: index })}>
+						{item.title}
+					</li>
+				))}
+			</ul>
 		);
 	}
 

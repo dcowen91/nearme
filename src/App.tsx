@@ -160,7 +160,7 @@ class App extends React.Component<{}, IAppState> {
 		return (
 			<ul>
 				{this.state.items.map((item, index) => (
-					<li key={item.pageId} onClick={() => this.setState({ selectedItemIndex: index })}>
+					<li key={item.pageId} className="listItem" onClick={() => this.setState({ selectedItemIndex: index })}>
 						{item.title}
 					</li>
 				))}

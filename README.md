@@ -1,10 +1,10 @@
 # Nearme
 
-wikipedia articles near me
+wikipedia articles [near me](https://http://dcowen91.github.io/nearme)
 
 ### Usage
 
-SET REACT*APP_MAPBOX_TOKEN = *<your_token>\_ // or store in .env file
+SET REACT_APP_MAPBOX_TOKEN = \*<your_token>\_ // or store in .env file
 
 npm run start
 

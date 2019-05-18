@@ -8,15 +8,27 @@
   pointer-events: none;
 }
 
+.gitLink {
+  color: white;
+}
+
 .App-header {
   background-color: #282c34;
   height: 50px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.innerHeader {
+  width: 100vw;
+  max-width: 1024px;
   font-size: calc(10px + 2vmin);
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
 }
 
 .mapContainer {

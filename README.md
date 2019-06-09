@@ -1,6 +1,6 @@
 # Nearme
 
-wikipedia articles [near me](https://http://dcowen91.github.io/nearme)
+wikipedia articles [near me](https://dcowen91.github.io/nearme)
 
 ### Usage
 
@@ -12,7 +12,10 @@ npm run start
 
 - [x] location API
 - [x] wikipedia geo api
-- [ ] build the actual content
-- [ ] deploy to gh pages
+- [x] content
+- [x] deploy to gh pages
+- [ ] fix location state bugs
+- [ ] add link to full article
+- [ ] add voice narration?
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
